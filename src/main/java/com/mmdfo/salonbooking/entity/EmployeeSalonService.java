@@ -1,0 +1,42 @@
+package com.mmdfo.salonbooking.entity;
+
+import com.mmdfo.salonbooking.entity.enums.EmployeeSalonServiceStatus;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class EmployeeSalonService {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employee_id", nullable = false)
+    private Employee employee;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "salon_service_id", nullable = false)
+    private SalonService salonService;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "approved_by")
+    private Admin approvedBy;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private EmployeeSalonServiceStatus status;
+
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdOn;
+
+}
