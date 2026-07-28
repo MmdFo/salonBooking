@@ -37,10 +37,14 @@ public class PortfolioItem {
     @JoinColumn(name = "salon_service_id", nullable = false)
     private SalonService salonService;
 
-    @Column(nullable = false, length = 150)
+    @Column(nullable = false, length = 10000)
     private String imageUrl;
 
-    private LocalDateTime createdDate;
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdOn;
+
+    @Column(nullable = false)
+    private LocalDateTime updatedOn;
 
 
 }
