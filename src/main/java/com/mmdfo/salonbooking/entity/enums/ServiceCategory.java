@@ -8,5 +8,4 @@ public enum ServiceCategory {
     EYEBROW,
     EYELASH,
     MASSAGE
-
 }
