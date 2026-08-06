@@ -1,7 +1,7 @@
 package com.mmdfo.salonbooking.entity;
 
-import com.mmdfo.salonbooking.entity.enums.ServiceCategory;
-import com.mmdfo.salonbooking.entity.enums.ServiceStatus;
+import com.mmdfo.salonbooking.enums.ServiceCategory;
+import com.mmdfo.salonbooking.enums.ServiceStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

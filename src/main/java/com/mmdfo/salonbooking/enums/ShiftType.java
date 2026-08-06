@@ -1,4 +1,4 @@
-package com.mmdfo.salonbooking.entity.enums;
+package com.mmdfo.salonbooking.enums;
 
 public enum ShiftType {
     MORNING,

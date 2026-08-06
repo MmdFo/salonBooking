@@ -1,6 +1,6 @@
 package com.mmdfo.salonbooking.entity;
 
-import com.mmdfo.salonbooking.entity.enums.ScheduleStatus;
+import com.mmdfo.salonbooking.enums.ScheduleStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

@@ -1,8 +1,8 @@
 package com.mmdfo.salonbooking.entity;
 
 
-import com.mmdfo.salonbooking.entity.enums.LeaveRequestStatus;
-import com.mmdfo.salonbooking.entity.enums.ShiftType;
+import com.mmdfo.salonbooking.enums.LeaveRequestStatus;
+import com.mmdfo.salonbooking.enums.ShiftType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

@@ -1,7 +1,7 @@
 package com.mmdfo.salonbooking.entity;
 
-import com.mmdfo.salonbooking.entity.enums.AccountStatus;
-import com.mmdfo.salonbooking.entity.enums.Role;
+import com.mmdfo.salonbooking.enums.AccountStatus;
+import com.mmdfo.salonbooking.enums.Role;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
