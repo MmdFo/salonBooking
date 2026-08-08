@@ -6,18 +6,22 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
 @Entity
-public class SalonService {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
+@SuperBuilder
+public class SalonServiceEntity extends BaseEntity {
 
     private String name;
 
@@ -25,7 +29,7 @@ public class SalonService {
     private String description;
 
     private BigDecimal price;
-    private BigInteger estimatedTime;
+    private Integer estimatedTime;
 
     @Enumerated(EnumType.STRING)
     private ServiceStatus status;

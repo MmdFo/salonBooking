@@ -6,28 +6,32 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
-public class Appointment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@AllArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
+@Data
+public class AppointmentEntity extends  BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id", nullable = false)
-    private Customer customer;
+    private UserEntity customerEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_salon_service_id", nullable = false)
-    private EmployeeSalonService employeeSalonService;
+    @JoinColumn(name = "employee_salon_id", nullable = false)
+    private EmployeeSalonServiceEntity employeeSalonServiceEntity;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -44,7 +48,4 @@ public class Appointment {
 
     @Column(length = 1000)
     private String description;
-
-    @Column(nullable = false, updatable = false)
-    private LocalDateTime createdOn;
 }

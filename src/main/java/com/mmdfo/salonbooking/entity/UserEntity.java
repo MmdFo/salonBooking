@@ -2,34 +2,30 @@ package com.mmdfo.salonbooking.entity;
 
 import com.mmdfo.salonbooking.enums.AccountStatus;
 import com.mmdfo.salonbooking.enums.Role;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-
-import java.time.LocalDateTime;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+@SuperBuilder
+public class UserEntity extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String fullName;
+    @Column(unique = true,  nullable = false)
+    private String phoneNumber;
     private String email;
     @Enumerated(EnumType.STRING)
     private AccountStatus accountStatus;
     @Enumerated(EnumType.STRING)
     private Role role;
-    @CreationTimestamp
-    private LocalDateTime createdOn;
-    private String phoneNumber;
-
+    private Integer workExperience;
+    private Double rating;
+    @Column(length = 1000)
+    private String bio;
 }
