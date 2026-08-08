@@ -4,6 +4,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,6 +27,7 @@ public class EmployeeCreateRequestDTO {
     @Email(message = "Invalid email format!")
     private String email;
     @NotNull
+    @PositiveOrZero
     private Integer workExperience;
     @Size(max = 1000, message = "Bio must not exceed 1000 characters!")
     private String bio;
