@@ -2,8 +2,10 @@ package com.mmdfo.salonbooking.service.ipml;
 
 import com.mmdfo.salonbooking.dto.CustomerCreateRequestDTO;
 import com.mmdfo.salonbooking.dto.CustomerResponseDTO;
+import com.mmdfo.salonbooking.dto.EmployeeCreateRequestDTO;
+import com.mmdfo.salonbooking.dto.EmployeeResponseDTO;
 import com.mmdfo.salonbooking.entity.UserEntity;
-import com.mmdfo.salonbooking.enums.EmployeeSalonServiceStatus;
+import com.mmdfo.salonbooking.enums.AccountStatus;
 import com.mmdfo.salonbooking.enums.Role;
 import com.mmdfo.salonbooking.mapper.UserMapper;
 import com.mmdfo.salonbooking.repository.UserRepository;
@@ -17,24 +19,47 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
-    private UserMapper userMapper;
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     @Override
-    public CustomerResponseDTO findById(Long id) {
+    public CustomerResponseDTO findCustomerById(Long id) {
         UserEntity response = userRepository.findById(id).orElseThrow();
         return userMapper.toCustomerResponse(response);
     }
 
     @Override
-    public CustomerResponseDTO create(CustomerCreateRequestDTO customerCreateRequestDTO) {
-        UserEntity mappedUser =  userRepository.save(userMapper.toEntity(customerCreateRequestDTO));
+    public CustomerResponseDTO createCustomer(CustomerCreateRequestDTO customerCreateRequestDTO) {
+        UserEntity mappedUser = userMapper.toEntity(customerCreateRequestDTO);
         mappedUser.setRole(Role.CUSTOMER);
-        return userMapper.toCustomerResponse(mappedUser);
+        mappedUser.setAccountStatus(AccountStatus.ACTIVE);
+        UserEntity savedUser = userRepository.save(mappedUser);
+        return userMapper.toCustomerResponse(savedUser);
     }
 
     @Override
-    public CustomerResponseDTO update(CustomerCreateRequestDTO CustomerCreateRequestDTO, Long id) {
+    public CustomerResponseDTO updateCustomer(CustomerCreateRequestDTO CustomerCreateRequestDTO, Long id) {
+        UserEntity user = userRepository.findById(id).orElseThrow();
+        return null;
+    }
+
+    @Override
+    public EmployeeResponseDTO findEmployeeById(Long id) {
+        UserEntity response = userRepository.findById(id).orElseThrow();
+        return userMapper.toEmployeeResponse(response);
+    }
+
+    @Override
+    public EmployeeResponseDTO createEmployee(EmployeeCreateRequestDTO employeeCreateRequestDTO) {
+        UserEntity mappedUser = userMapper.toEntity(employeeCreateRequestDTO);
+        mappedUser.setRole(Role.EMPLOYEE);
+        mappedUser.setAccountStatus(AccountStatus.ACTIVE);
+        UserEntity savedUser = userRepository.save(mappedUser);
+        return userMapper.toEmployeeResponse(savedUser);
+    }
+
+    @Override
+    public EmployeeResponseDTO updateEmployee(EmployeeCreateRequestDTO employeeCreateRequestDTO, Long id) {
         UserEntity user = userRepository.findById(id).orElseThrow();
         return null;
     }
@@ -47,12 +72,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<CustomerResponseDTO> findAll(Pageable pageable) {
+    public Page<CustomerResponseDTO> findAllCustomers(Pageable pageable, Role role) {
         return null;
     }
 
     @Override
-    public Page<CustomerResponseDTO> findByStatus(EmployeeSalonServiceStatus status, Pageable pageable) {
+    public Page<CustomerResponseDTO> findCustomersByStatus(AccountStatus status, Pageable pageable) {
+        return null;
+    }
+
+    @Override
+    public Page<EmployeeResponseDTO> findAllEmployees(Pageable pageable, Role role) {
+        return null;
+    }
+
+    @Override
+    public Page<EmployeeResponseDTO> findEmployeesByStatus(AccountStatus status, Pageable pageable) {
         return null;
     }
 }
