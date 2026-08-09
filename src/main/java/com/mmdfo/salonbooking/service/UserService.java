@@ -11,7 +11,7 @@ public interface UserService {
     CustomerResponseDTO findById(Long id);
     CustomerResponseDTO create(CustomerCreateRequestDTO customerCreateRequestDTO);
     CustomerResponseDTO update(CustomerCreateRequestDTO CustomerCreateRequestDTO,  Long id);
-    CustomerResponseDTO delete(Long id);
+    String delete(Long id);
     Page<CustomerResponseDTO> findAll(Pageable pageable);
     Page<CustomerResponseDTO> findByStatus(EmployeeSalonServiceStatus status, Pageable pageable);
 
