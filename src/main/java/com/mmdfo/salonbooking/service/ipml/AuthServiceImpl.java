@@ -1,6 +1,7 @@
 package com.mmdfo.salonbooking.service.ipml;
 
 import com.mmdfo.salonbooking.dto.SendOtpResponseDTO;
+import com.mmdfo.salonbooking.dto.VerifyOtpRequestDTO;
 import com.mmdfo.salonbooking.entity.UserEntity;
 import com.mmdfo.salonbooking.enums.AccountStatus;
 import com.mmdfo.salonbooking.repository.UserRepository;
@@ -9,14 +10,13 @@ import com.mmdfo.salonbooking.service.OtpService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
     private final UserRepository userRepository;
     private final OtpService otpService;
+
     @Override
     public SendOtpResponseDTO sendOtp(String phoneNumber) {
 
@@ -28,7 +28,7 @@ public class AuthServiceImpl implements AuthService {
             throw new IllegalStateException("Account is not active");
         }
 
-        String otp = generateOtp();
+        String otp = otpService.generateOtp();
 
         otpService.saveOtp(phoneNumber, otp);
 
@@ -40,11 +40,21 @@ public class AuthServiceImpl implements AuthService {
                 120
         );
     }
-    private String generateOtp() {
 
-        return String.format(
-                "%06d",
-                ThreadLocalRandom.current().nextInt(1_000_000)
+    @Override
+    public void verifyOtp(VerifyOtpRequestDTO verifyOtpRequestDTO) {
+
+        String storedOtp = otpService.getOtp(verifyOtpRequestDTO.getPhoneNumber());
+
+        if (storedOtp == null) {
+            throw new IllegalStateException("OTP not found");
+        }
+
+        if (!storedOtp.equals(verifyOtpRequestDTO.getOtp())) {
+            throw new IllegalStateException("Invalid OTP");
+        }
+        otpService.deleteOtp(
+                verifyOtpRequestDTO.getPhoneNumber()
         );
     }
 }

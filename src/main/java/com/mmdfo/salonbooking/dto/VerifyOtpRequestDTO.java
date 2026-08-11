@@ -2,7 +2,6 @@ package com.mmdfo.salonbooking.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +25,5 @@ public class VerifyOtpRequestDTO {
     )
     private String otp;
 
-    // Used only when registering a new customer
-    @Size(max = 100, message = "Name must not exceed 100 characters!")
-    private String fullName;
+    private boolean verified;
 }

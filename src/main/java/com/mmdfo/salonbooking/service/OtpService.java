@@ -7,4 +7,6 @@ public interface OtpService {
     String getOtp(String phoneNumber);
 
     void deleteOtp(String phoneNumber);
+
+    String generateOtp();
 }

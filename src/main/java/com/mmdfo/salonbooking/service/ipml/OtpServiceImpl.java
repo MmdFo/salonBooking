@@ -6,6 +6,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 @RequiredArgsConstructor
@@ -40,5 +41,13 @@ public class OtpServiceImpl implements OtpService {
         String key = OTP_PREFIX + phoneNumber;
 
         redisTemplate.delete(key);
+    }
+
+    public String generateOtp() {
+
+        return String.format(
+                "%06d",
+                ThreadLocalRandom.current().nextInt(1_000_000)
+        );
     }
 }
