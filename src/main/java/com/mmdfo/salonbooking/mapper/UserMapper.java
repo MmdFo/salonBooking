@@ -6,6 +6,7 @@ import com.mmdfo.salonbooking.dto.CustomerCreateRequestDTO;
 import com.mmdfo.salonbooking.dto.CustomerResponseDTO;
 import com.mmdfo.salonbooking.dto.EmployeeCreateRequestDTO;
 import com.mmdfo.salonbooking.dto.EmployeeResponseDTO;
+import com.mmdfo.salonbooking.dto.UserDTO;
 import com.mmdfo.salonbooking.entity.UserEntity;
 import org.mapstruct.Mapper;
 
@@ -23,4 +24,6 @@ public interface UserMapper {
     EmployeeResponseDTO toEmployeeResponse(UserEntity entity);
 
     AdminResponseDTO toAdminResponse(UserEntity entity);
+
+    UserDTO toUserDTO(UserEntity entity);
 }
