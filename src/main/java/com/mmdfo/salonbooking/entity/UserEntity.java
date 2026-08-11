@@ -23,7 +23,6 @@ public class UserEntity extends BaseEntity {
     private String fullName;
     @Column(unique = true,  nullable = false)
     private String phoneNumber;
-    private String email;
     @Enumerated(EnumType.STRING)
     private AccountStatus accountStatus;
     @Enumerated(EnumType.STRING)

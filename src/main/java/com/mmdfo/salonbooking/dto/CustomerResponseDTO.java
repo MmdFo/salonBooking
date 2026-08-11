@@ -19,7 +19,6 @@ public class CustomerResponseDTO extends BaseResponseDTO {
 
     private String fullName;
     private String phoneNumber;
-    private String email;
     @Enumerated(EnumType.STRING)
     private AccountStatus accountStatus;
     @Enumerated(EnumType.STRING)

@@ -29,7 +29,4 @@ public class VerifyOtpRequestDTO {
     // Used only when registering a new customer
     @Size(max = 100, message = "Name must not exceed 100 characters!")
     private String fullName;
-
-    @Size(max = 255, message = "Email must not exceed 255 characters!")
-    private String email;
 }

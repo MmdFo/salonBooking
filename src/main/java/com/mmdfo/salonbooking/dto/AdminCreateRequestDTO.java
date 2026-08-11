@@ -1,6 +1,5 @@
 package com.mmdfo.salonbooking.dto;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -20,7 +19,4 @@ public class AdminCreateRequestDTO {
             message = "Invalid phone number format!"
     )
     private String phoneNumber;
-
-    @Email(message = "Invalid email format!")
-    private String email;
 }

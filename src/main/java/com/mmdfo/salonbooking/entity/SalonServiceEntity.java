@@ -13,7 +13,6 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 @Entity
 @NoArgsConstructor
