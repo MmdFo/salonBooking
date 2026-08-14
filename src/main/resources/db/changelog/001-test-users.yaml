@@ -1,0 +1,70 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-test-users
+      author: mmd
+      changes:
+        - insert:
+            tableName: user_entity
+            columns:
+              - column:
+                  name: created_at
+                  valueDate: "2026-08-14T00:00:00"
+              - column:
+                  name: updated_at
+                  valueDate: "2026-08-14T00:00:00"
+              - column:
+                  name: full_name
+                  value: "Test Customer"
+              - column:
+                  name: phone_number
+                  value: "9140000000"
+              - column:
+                  name: account_status
+                  value: "ACTIVE"
+              - column:
+                  name: role
+                  value: "CUSTOMER"
+
+        - insert:
+            tableName: user_entity
+            columns:
+              - column:
+                  name: created_at
+                  valueDate: "2026-08-14T00:00:00"
+              - column:
+                  name: updated_at
+                  valueDate: "2026-08-14T00:00:00"
+              - column:
+                  name: full_name
+                  value: "Test Customer 1"
+              - column:
+                  name: phone_number
+                  value: "9140000001"
+              - column:
+                  name: account_status
+                  value: "INACTIVE"
+              - column:
+                  name: role
+                  value: "CUSTOMER"
+
+        - insert:
+            tableName: user_entity
+            columns:
+              - column:
+                  name: created_at
+                  valueDate: "2026-08-14T00:00:00"
+              - column:
+                  name: updated_at
+                  valueDate: "2026-08-14T00:00:00"
+              - column:
+                  name: full_name
+                  value: "Test Customer 2"
+              - column:
+                  name: phone_number
+                  value: "9140000002"
+              - column:
+                  name: account_status
+                  value: "SUSPENDED"
+              - column:
+                  name: role
+                  value: "CUSTOMER"
