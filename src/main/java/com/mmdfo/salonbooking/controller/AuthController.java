@@ -1,7 +1,9 @@
 package com.mmdfo.salonbooking.controller;
 
+import com.mmdfo.salonbooking.dto.AuthResponseDTO;
 import com.mmdfo.salonbooking.dto.SendOtpRequestDTO;
 import com.mmdfo.salonbooking.dto.SendOtpResponseDTO;
+import com.mmdfo.salonbooking.dto.VerifyOtpRequestDTO;
 import com.mmdfo.salonbooking.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,5 +27,10 @@ public class AuthController {
         return ResponseEntity.ok(
                 authService.sendOtp(request.getPhoneNumber())
         );
+    }
+
+    @PostMapping("/verify-otp")
+    public AuthResponseDTO verifyOtp(@Valid @RequestBody VerifyOtpRequestDTO verifyOtpReq) {
+        return authService.verifyOtp(verifyOtpReq);
     }
 }

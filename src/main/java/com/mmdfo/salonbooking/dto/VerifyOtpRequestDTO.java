@@ -24,6 +24,4 @@ public class VerifyOtpRequestDTO {
             message = "OTP must contain exactly 6 digits!"
     )
     private String otp;
-
-    private boolean verified;
 }
