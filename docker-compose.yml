@@ -1,0 +1,36 @@
+services:
+
+  app:
+    build: .
+    container_name: salonbooking-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/saloon_booking
+      SPRING_DATASOURCE_USERNAME: saloon_user
+      SPRING_DATASOURCE_PASSWORD: saloonUserPass
+
+      SPRING_DATA_REDIS_HOST: redis
+      SPRING_DATA_REDIS_PORT: 6379
+
+      JWT_SECRET: zJc3BISVO/o1hjTWRqAZ+O16wpoMIa/hfOhnxIkO48s=
+      JWT_EXPIRATION: PT1H
+
+  postgres:
+    image: postgres:18
+    container_name: salonbooking-postgres
+    environment:
+      POSTGRES_DB: saloon_booking
+      POSTGRES_USER: saloon_user
+      POSTGRES_PASSWORD: saloonUserPass
+    volumes:
+      - postgres_data:/var/lib/postgresql
+  redis:
+    image: redis:8
+    container_name: salonbooking-redis
+
+volumes:
+  postgres_data:
