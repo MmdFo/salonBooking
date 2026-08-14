@@ -22,8 +22,13 @@ public class OtpServiceImpl implements OtpService {
 
         String key = OTP_PREFIX + phoneNumber;
 
+        System.out.println(">>> SAVE OTP KEY: [" + key + "]");
+        System.out.println(">>> SAVE OTP VALUE: [" + otp + "]");
+
         redisTemplate.opsForValue()
                 .set(key, otp, OTP_EXPIRATION);
+
+        System.out.println(">>> OTP SAVED SUCCESSFULLY");
     }
 
     @Override
@@ -31,8 +36,14 @@ public class OtpServiceImpl implements OtpService {
 
         String key = OTP_PREFIX + phoneNumber;
 
-        return redisTemplate.opsForValue()
+        System.out.println(">>> GET OTP KEY: [" + key + "]");
+
+        String otp = redisTemplate.opsForValue()
                 .get(key);
+
+        System.out.println(">>> GET OTP RESULT: [" + otp + "]");
+
+        return otp;
     }
 
     @Override
@@ -40,14 +51,23 @@ public class OtpServiceImpl implements OtpService {
 
         String key = OTP_PREFIX + phoneNumber;
 
-        redisTemplate.delete(key);
+        System.out.println(">>> DELETE OTP KEY: [" + key + "]");
+
+        Boolean deleted = redisTemplate.delete(key);
+
+        System.out.println(">>> OTP DELETED: [" + deleted + "]");
     }
 
+    @Override
     public String generateOtp() {
 
-        return String.format(
+        String otp = String.format(
                 "%06d",
                 ThreadLocalRandom.current().nextInt(1_000_000)
         );
+
+        System.out.println(">>> GENERATED OTP: [" + otp + "]");
+
+        return otp;
     }
 }
