@@ -9,4 +9,6 @@ public interface JwtService {
     String extractUserId(String token);
 
     boolean isTokenValid(String token);
+
+    String extractRole(String token);
 }

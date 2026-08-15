@@ -69,4 +69,13 @@ public class JwtServiceImpl implements JwtService {
             return false;
         }
     }
+    @Override
+    public String extractRole(String token) {
+        return Jwts.parser()
+                .verifyWith(secretKey)
+                .build()
+                .parseSignedClaims(token)
+                .getPayload()
+                .get("role", String.class);
+    }
 }
