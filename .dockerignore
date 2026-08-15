@@ -1,3 +1,5 @@
 .idea
 .git
+target/*
+!target/salonbooking-0.0.1-SNAPSHOT.jar
 *.iml
