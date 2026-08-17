@@ -9,4 +9,10 @@ public interface OtpService {
     void deleteOtp(String phoneNumber);
 
     String generateOtp();
+
+    void saveRegistrationToken(String token, String phoneNumber);
+
+    String getRegistrationPhone(String token);
+
+    void deleteRegistrationToken(String token);
 }
