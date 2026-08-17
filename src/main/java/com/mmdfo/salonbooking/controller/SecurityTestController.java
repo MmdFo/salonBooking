@@ -14,4 +14,24 @@ public class SecurityTestController {
 
         return "Authenticated user ID: " + authentication.getName();
     }
+
+    @GetMapping("/authenticated")
+    public String authenticated() {
+        return "You are authenticated";
+    }
+
+    @GetMapping("/customer")
+    public String customer() {
+        return "You are a CUSTOMER";
+    }
+
+    @GetMapping("/employee")
+    public String employee() {
+        return "You are an EMPLOYEE";
+    }
+
+    @GetMapping("/admin")
+    public String admin() {
+        return "You are an ADMIN";
+    }
 }
